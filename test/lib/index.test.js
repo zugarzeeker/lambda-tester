@@ -1604,23 +1604,6 @@ describe( 'lib/index', function() {
                         }
                     );
             });
-
-            it( 'with version checking (node 7.0.0)', function() {
-
-                process = Object.assign( {}, originalProcess );
-                process.versions =  { node: '7.0.0' };
-
-                return LambdaTester( LAMBDA_SIMPLE_CALLBACK )
-                    .expectResult()
-                    .then(
-                        () => {
-                            throw new Error( 'should not work' );
-                        },
-                        ( err ) => {
-                            expect( err.message ).to.contain( 'node.js 7.x is not currently supported' );
-                        }
-                    );
-            });
         });
 
         describe( 'process.env.LAMBDA_TESTER_NODE_VERSION_CHECK', function() {
